@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-backtest-momentum
+  labels:
+    app: stock-backtest-momentum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-backtest-momentum
+  template:
+    metadata:
+      labels:
+        app: stock-backtest-momentum
+    spec:
+      containers:
+      - name: stock-backtest-momentum
+        image: stock-backtest-momentum:latest
+        ports:
+        - containerPort: 8080
