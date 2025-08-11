@@ -1,5 +1,4 @@
-"""
-Processor module for stock-backtest-momentum signal generation.
+"""Processor module for stock-backtest-momentum signal generation.
 
 Validates input messages and computes a momentum signal using
 price change over time or momentum indicators.
@@ -15,8 +14,7 @@ logger = setup_logger(__name__)
 
 
 def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
-    """
-    Validate the incoming raw message against the expected schema.
+    """Validate the incoming raw message against the expected schema.
 
     Args:
         message (dict[str, Any]): Raw input message.
@@ -26,6 +24,7 @@ def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
 
     Raises:
         ValueError: If the input format is invalid.
+
     """
     logger.debug("🔍 Validating message schema...")
     if not validate_message_schema(message):
@@ -35,14 +34,14 @@ def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
 
 
 def compute_momentum_signal(message: ValidatedMessage) -> dict[str, Any]:
-    """
-    Compute a momentum signal using recent price change.
+    """Compute a momentum signal using recent price change.
 
     Args:
         message (ValidatedMessage): The validated input data.
 
     Returns:
         dict[str, Any]: Enriched message with momentum signal and metric.
+
     """
     symbol = message.get("symbol", "UNKNOWN")
     price = float(message.get("price", 100.0))
